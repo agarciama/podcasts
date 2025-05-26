@@ -1,17 +1,19 @@
 package es.upsa.dasi.creadores.adapters.input.rest;
 
+import es.upsa.dasi.creadores.application.AddCreadorUseCase;
 import es.upsa.dasi.creadores.application.GetCreadorByIdUseCase;
 import es.upsa.dasi.creadores.application.GetCreadoresByIdsUseCase;
 import es.upsa.dasi.creadores.application.GetCreadoresUseCase;
+import es.upsa.dasi.podcasts.domain.dtos.CreadorDto;
 import es.upsa.dasi.podcasts.domain.entities.Creador;
 import es.upsa.dasi.podcasts.domain.exceptions.CreadorNotFoundException;
 import es.upsa.dasi.podcasts.domain.exceptions.PodcastsAppException;
+import es.upsa.dasi.podcasts.domain.mappers.Mappers;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.GenericEntity;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.*;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +29,9 @@ public class CreadorResource
 
     @Inject
     GetCreadorByIdUseCase getCreadorByIdUseCase;
+
+    @Inject
+    AddCreadorUseCase addCreadorUseCase;
 
 
     @GET
@@ -57,6 +62,37 @@ public class CreadorResource
 
 
     }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addPelicula(CreadorDto creadorDto, @Context UriInfo uriInfo) throws PodcastsAppException
+    {
+        Creador creador = Mappers.toPelicula(creadorDto);
+
+
+        Creador creadorInsertado = addCreadorUseCase.execute(creador);
+
+
+        return Response.created(  createCreadorURI(uriInfo, creadorInsertado)  )
+                .entity( creadorInsertado )
+                .build();
+    }
+
+
+
+    private URI createCreadorURI(UriInfo uriInfo, Creador creador)
+    {
+        return uriInfo.getBaseUriBuilder()
+                .path("/creadores/{id}")
+                .resolveTemplate("id", creador.getId())
+                .build();
+
+    }
+
+
+
+
 
 
 

@@ -10,4 +10,16 @@ Accept: application/json
 GET http://localhost:8081/creadores/CR1
 Accept: application/json
 
+### POST /creadores
+POST http://localhost:8081/creadores
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nombre": "Álvaro García Martín",
+  "email": "agarciama.inf@upsa.es",
+  "bio": "Ingeniero informático graduado en la UPSA. Ahora se dedica a hacer podcasts sobre el mundo de la programación."
+}
+
+
 

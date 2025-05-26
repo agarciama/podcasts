@@ -30,4 +30,9 @@ public class RepositoryImpl implements Repository
     public Optional<Creador> getCreadorById(String id) throws PodcastsAppException {
         return dao.findCreadorById(id);
     }
+
+    @Override
+    public Creador addCreador(Creador creador) throws PodcastsAppException {
+       return dao.insertCreador(creador);
+    }
 }

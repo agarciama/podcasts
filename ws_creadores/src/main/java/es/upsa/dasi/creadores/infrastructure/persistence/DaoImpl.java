@@ -110,6 +110,38 @@ public class DaoImpl implements Dao
         }
     }
 
+    @Override
+    public Creador insertCreador(Creador creador) throws PodcastsAppException {
+
+        final String SQL = """
+                           INSERT INTO creador(id,                       nombre, email, bio)  
+                             VALUES           (nextval('seq_creador'), ?,      ?,       ?)   
+                           """;
+
+        final String[] fields = {"id"};
+
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL,fields)
+        )
+        {
+            preparedStatement.setString(1, creador.getNombre());
+            preparedStatement.setString(2, creador.getEmail());
+            preparedStatement.setString(3, creador.getBio());
+            preparedStatement.executeUpdate();
+
+            try(ResultSet resultSet = preparedStatement.getGeneratedKeys())
+            {
+                resultSet.next();
+                String id = resultSet.getString(1);
+                return creador.withId(id);
+
+            }
+
+        }catch (SQLException sqlException){
+            throw toPodcastsAppException(sqlException);
+        }
+    }
+
 
     private Creador toCreador(ResultSet resultSet) throws SQLException
     {
