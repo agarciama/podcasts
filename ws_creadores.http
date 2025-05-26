@@ -18,8 +18,22 @@ Accept: application/json
 {
   "nombre": "Álvaro García Martín",
   "email": "agarciama.inf@upsa.es",
-  "bio": "Ingeniero informático graduado en la UPSA. Ahora se dedica a hacer podcasts sobre el mundo de la programación."
+  "bio": "Ingeniero informático. Ahora se dedica a hacer podcasts sobre el mundo de la programación."
 }
+
+### PUT /creadores/{id}
+# Reemplaza CR1 por el ID real que te devolvió tu POST anterior
+PUT http://localhost:8081/creadores/CR5
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nombre": "Álvaro García Martín",
+  "email": "agarciama.inf@upsa.es",
+  "bio": "Ingeniero informático graduado en la UPSA. Ahora se dedica a hacer podcasts sobre el mundo de la programación y la tecnología."
+}
+
+
 
 
 

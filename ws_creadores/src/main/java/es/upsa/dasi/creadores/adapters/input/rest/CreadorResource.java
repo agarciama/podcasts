@@ -1,9 +1,6 @@
 package es.upsa.dasi.creadores.adapters.input.rest;
 
-import es.upsa.dasi.creadores.application.AddCreadorUseCase;
-import es.upsa.dasi.creadores.application.GetCreadorByIdUseCase;
-import es.upsa.dasi.creadores.application.GetCreadoresByIdsUseCase;
-import es.upsa.dasi.creadores.application.GetCreadoresUseCase;
+import es.upsa.dasi.creadores.application.*;
 import es.upsa.dasi.podcasts.domain.dtos.CreadorDto;
 import es.upsa.dasi.podcasts.domain.entities.Creador;
 import es.upsa.dasi.podcasts.domain.exceptions.CreadorNotFoundException;
@@ -32,6 +29,9 @@ public class CreadorResource
 
     @Inject
     AddCreadorUseCase addCreadorUseCase;
+
+    @Inject
+    UpdateCreadorUseCase updateCreadorUseCase;
 
 
     @GET
@@ -78,6 +78,25 @@ public class CreadorResource
                 .entity( creadorInsertado )
                 .build();
     }
+
+    @Path("/{id}")
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateCreador(@PathParam("id") String id, CreadorDto creadorDto) throws PodcastsAppException
+    {
+        Creador creador = Mappers.toPelicula(creadorDto)
+                                 .withId(id);
+
+
+        Creador creadorUpdated = updateCreadorUseCase.execute(creador);
+
+        return Response.ok()
+                .entity(creadorUpdated)
+                .build();
+    }
+
+
 
 
 

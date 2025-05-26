@@ -3,6 +3,7 @@ package es.upsa.dasi.creadores.domain.repository.impl;
 import es.upsa.dasi.creadores.adapters.output.persistence.Dao;
 import es.upsa.dasi.creadores.domain.repository.Repository;
 import es.upsa.dasi.podcasts.domain.entities.Creador;
+import es.upsa.dasi.podcasts.domain.exceptions.CreadorNotFoundException;
 import es.upsa.dasi.podcasts.domain.exceptions.PodcastsAppException;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -32,7 +33,10 @@ public class RepositoryImpl implements Repository
     }
 
     @Override
-    public Creador addCreador(Creador creador) throws PodcastsAppException {
-       return dao.insertCreador(creador);
+    public Creador saveCreador(Creador creador) throws PodcastsAppException {
+
+        return (creador.getId() == null)? dao.insertCreador(creador): dao.updateCreador(creador)
+                                                                         .orElseThrow(CreadorNotFoundException::new);
+
     }
 }

@@ -115,7 +115,7 @@ public class DaoImpl implements Dao
 
         final String SQL = """
                            INSERT INTO creador(id,                       nombre, email, bio)  
-                             VALUES           (nextval('seq_creador'), ?,      ?,       ?)   
+                             VALUES           ('CR' || nextval('seq_creador'), ?,      ?,       ?)   
                            """;
 
         final String[] fields = {"id"};
@@ -138,6 +138,37 @@ public class DaoImpl implements Dao
             }
 
         }catch (SQLException sqlException){
+            throw toPodcastsAppException(sqlException);
+        }
+    }
+
+    @Override
+    public Optional<Creador> updateCreador(Creador creador) throws PodcastsAppException {
+        final String SQL = """
+                           UPDATE creador
+                              SET nombre = ?,
+                                  email = ?,
+                                  bio = ?
+                            WHERE id = ?
+                           """;
+
+        try ( Connection connection = dataSource.getConnection();
+              PreparedStatement preparedStatement = connection.prepareStatement(SQL)
+        )
+        {
+            preparedStatement.setString(1, creador.getNombre());
+            preparedStatement.setString(2, creador.getEmail());
+            preparedStatement.setString(3, creador.getBio());
+            preparedStatement.setString(4, creador.getId());
+
+            int count = preparedStatement.executeUpdate();
+
+
+            return (count == 0)? Optional.empty() : Optional.of(creador);
+
+
+        } catch (SQLException sqlException)
+        {
             throw toPodcastsAppException(sqlException);
         }
     }
