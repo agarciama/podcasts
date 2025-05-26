@@ -12,4 +12,5 @@ public interface Repository
     List<Creador> getCreadoresByIds(List<String> ids) throws PodcastsAppException;
     Optional<Creador> getCreadorById (String id) throws PodcastsAppException;
     Creador saveCreador(Creador creador) throws PodcastsAppException;
+    void removeCreadorById(String id) throws PodcastsAppException;
 }

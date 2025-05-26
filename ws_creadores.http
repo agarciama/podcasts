@@ -33,6 +33,11 @@ Accept: application/json
   "bio": "Ingeniero informático graduado en la UPSA. Ahora se dedica a hacer podcasts sobre el mundo de la programación y la tecnología."
 }
 
+### DELETE /creadores/{id}
+DELETE http://localhost:8081/creadores/CR5
+
+
+
 
 
 

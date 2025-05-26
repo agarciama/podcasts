@@ -173,6 +173,31 @@ public class DaoImpl implements Dao
         }
     }
 
+    @Override
+    public void deleteCreador(String id) throws PodcastsAppException {
+        final String SQL = """
+                           DELETE FROM creador
+                            WHERE id = ?
+                           """;
+
+        try ( Connection connection = dataSource.getConnection();
+              PreparedStatement preparedStatement = connection.prepareStatement(SQL)
+        )
+        {
+            preparedStatement.setString(1, id);
+
+            int count = preparedStatement.executeUpdate();
+
+            if (count == 0) throw new CreadorNotFoundException();
+
+
+        } catch (SQLException sqlException)
+        {
+            throw toPodcastsAppException(sqlException);
+
+        }
+    }
+
 
     private Creador toCreador(ResultSet resultSet) throws SQLException
     {

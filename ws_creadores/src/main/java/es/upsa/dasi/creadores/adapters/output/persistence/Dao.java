@@ -14,4 +14,6 @@ public interface Dao
 
     Creador insertCreador(Creador creador) throws PodcastsAppException;
     Optional<Creador> updateCreador(Creador creador) throws PodcastsAppException;
+
+    void deleteCreador(String id) throws PodcastsAppException;
 }

@@ -39,4 +39,9 @@ public class RepositoryImpl implements Repository
                                                                          .orElseThrow(CreadorNotFoundException::new);
 
     }
+
+    @Override
+    public void removeCreadorById(String id) throws PodcastsAppException {
+        dao.deleteCreador(id);
+    }
 }

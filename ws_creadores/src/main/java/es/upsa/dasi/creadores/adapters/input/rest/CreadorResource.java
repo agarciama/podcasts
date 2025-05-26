@@ -33,6 +33,9 @@ public class CreadorResource
     @Inject
     UpdateCreadorUseCase updateCreadorUseCase;
 
+    @Inject
+    RemoveCreadorUseCase removeCreadorUseCase;
+
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -97,7 +100,15 @@ public class CreadorResource
     }
 
 
+    @Path("/{id}")
+    @DELETE
+    public Response deletePeliculaById(@PathParam("id") String id) throws PodcastsAppException
+    {
+        removeCreadorUseCase.execute(id);
 
+        return Response.noContent()
+                .build();
+    }
 
 
     private URI createCreadorURI(UriInfo uriInfo, Creador creador)
