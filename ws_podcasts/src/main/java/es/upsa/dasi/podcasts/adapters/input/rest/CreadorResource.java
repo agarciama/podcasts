@@ -1,4 +1,4 @@
-package es.upsa.dasi.creadores.adapters.input.rest;
+package es.upsa.dasi.podcasts.adapters.input.rest;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

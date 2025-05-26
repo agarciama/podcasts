@@ -1,0 +1,5 @@
+### GET /creadores
+GET http://localhost:8081/creadores
+Accept: application/json
+
+###
