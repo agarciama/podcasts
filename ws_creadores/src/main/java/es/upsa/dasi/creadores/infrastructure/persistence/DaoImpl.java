@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @ApplicationScoped
@@ -81,6 +82,32 @@ public class DaoImpl implements Dao
             throw toPodcastsAppException(sqlException);
         }
         return creadores;
+    }
+
+    @Override
+    public Optional<Creador> findCreadorById(String id) throws PodcastsAppException {
+        final String SQL = """
+                           SELECT c.id, c.nombre, c.email, c.bio
+                             FROM creador c
+                            WHERE c.id = ?
+                           """;
+
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)
+        )
+        {
+            preparedStatement.setString(1, id);
+
+            try(ResultSet resultSet = preparedStatement.executeQuery())
+            {
+                return ( !resultSet.next() )? Optional.empty() : Optional.of( toCreador(resultSet) );
+            }
+
+        } catch (SQLException sqlException)
+        {
+            throw toPodcastsAppException(sqlException);
+        }
     }
 
 

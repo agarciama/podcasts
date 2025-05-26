@@ -8,6 +8,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class RepositoryImpl implements Repository
@@ -23,5 +24,10 @@ public class RepositoryImpl implements Repository
     @Override
     public List<Creador> getCreadoresByIds(List<String> ids) throws PodcastsAppException {
         return dao.findCreadoresByIds(ids);
+    }
+
+    @Override
+    public Optional<Creador> getCreadorById(String id) throws PodcastsAppException {
+        return dao.findCreadorById(id);
     }
 }

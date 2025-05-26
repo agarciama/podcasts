@@ -5,3 +5,9 @@ Accept: application/json
 ### GET /creadores?ids
 GET http://localhost:8081/creadores?ids=CR1,CR2,CR3
 Accept: application/json
+
+### GET /creadores/{id}
+GET http://localhost:8081/creadores/CR1
+Accept: application/json
+
+
