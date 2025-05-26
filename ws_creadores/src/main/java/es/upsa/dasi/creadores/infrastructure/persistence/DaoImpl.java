@@ -10,10 +10,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +45,39 @@ public class DaoImpl implements Dao
 
         return creadores;
 
+    }
+
+    @Override
+    public List<Creador> findCreadoresByIds(List<String> ids) throws PodcastsAppException {
+        final String SQL = """
+                           SELECT c.id, c.nombre, c.email, c.bio
+                             FROM creador c
+                            WHERE c.id = ANY(?)
+                           """;
+        List<Creador> creadores = new ArrayList<>();
+
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)
+        )
+        {
+            Array arrIds = connection.createArrayOf("VARCHAR", ids.toArray());
+
+            preparedStatement.setArray(1, arrIds);
+
+            try(ResultSet resultSet = preparedStatement.executeQuery())
+            {
+                while (resultSet.next())
+                {
+                    creadores.add( toCreador(resultSet) );
+                }
+            }
+
+        } catch (SQLException sqlException)
+        {
+            throw toPodcastsAppException(sqlException);
+        }
+        return creadores;
     }
 
 

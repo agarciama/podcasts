@@ -8,4 +8,5 @@ import java.util.List;
 public interface Repository
 {
     List<Creador> getCreadores () throws PodcastsAppException;
+    List<Creador> getCreadoresByIds(List<String> ids) throws PodcastsAppException;
 }

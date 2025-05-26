@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="Quarkus" url="file://$PROJECT_DIR$/gateway" />
     <file type="Quarkus" url="file://$PROJECT_DIR$/ws_creadores" />
     <file type="Quarkus" url="file://$PROJECT_DIR$/ws_podcasts" />
   </component>
@@ -12,6 +13,7 @@
         <option value="$PROJECT_DIR$/ws_podcasts/pom.xml" />
         <option value="$PROJECT_DIR$/ws_creadores/pom.xml" />
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/shared-quarkus/pom.xml" />
       </list>
     </option>
   </component>

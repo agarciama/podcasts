@@ -19,4 +19,9 @@ public class RepositoryImpl implements Repository
     public List<Creador> getCreadores() throws PodcastsAppException {
         return dao.findCreadores();
     }
+
+    @Override
+    public List<Creador> getCreadoresByIds(List<String> ids) throws PodcastsAppException {
+        return dao.findCreadoresByIds(ids);
+    }
 }

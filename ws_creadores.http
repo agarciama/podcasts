@@ -2,4 +2,6 @@
 GET http://localhost:8081/creadores
 Accept: application/json
 
-###
+### GET /creadores?ids
+GET http://localhost:8081/creadores?ids=CR1,CR2,CR3
+Accept: application/json

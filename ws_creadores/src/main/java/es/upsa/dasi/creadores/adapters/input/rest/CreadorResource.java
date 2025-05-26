@@ -1,5 +1,6 @@
 package es.upsa.dasi.creadores.adapters.input.rest;
 
+import es.upsa.dasi.creadores.application.GetCreadoresByIdsUseCase;
 import es.upsa.dasi.creadores.application.GetCreadoresUseCase;
 import es.upsa.dasi.podcasts.domain.entities.Creador;
 import es.upsa.dasi.podcasts.domain.exceptions.PodcastsAppException;
@@ -18,19 +19,24 @@ public class CreadorResource
     @Inject
     GetCreadoresUseCase getCreadoresUseCase;
 
+    @Inject
+    GetCreadoresByIdsUseCase getCreadoresByIdsUseCase;
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getCreadores() throws PodcastsAppException
+    public Response getCreadores(@DefaultValue("") @QueryParam("ids") List<String> ids ) throws PodcastsAppException
     {
 
-        //List<Creador> creadores = ( ids.isEmpty() )? getCreadoresUseCase.execute() : getCreadoresByIdsUsecase.execute(ids);
+        List<Creador> creadores = ( ids.isEmpty() )? getCreadoresUseCase.execute() : getCreadoresByIdsUseCase.execute(ids);
 
-        List<Creador> creadores =  getCreadoresUseCase.execute();
+
 
         return Response.ok()
                 .entity( new GenericEntity<List<Creador>>( creadores ) {})
                 .build();
     }
+
+
 
 
 }

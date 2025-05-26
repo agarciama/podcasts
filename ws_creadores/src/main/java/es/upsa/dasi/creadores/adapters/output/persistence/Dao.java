@@ -8,4 +8,5 @@ import java.util.List;
 public interface Dao
 {
     List<Creador> findCreadores() throws PodcastsAppException;
+    List<Creador> findCreadoresByIds(List<String> ids) throws PodcastsAppException;
 }

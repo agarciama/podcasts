@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>es.upsa.dasi</groupId>
-        <artifactId>podcasts</artifactId>
-        <version>1.0.0</version>
-    </parent>
-
-    <artifactId>ws_podcasts</artifactId>
+    <groupId>es.upsa.dasi</groupId>
+    <artifactId>shared-quarkus</artifactId>
     <version>1.0.0</version>
 
     <properties>
@@ -36,16 +31,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>es.upsa.dasi</groupId>
-            <artifactId>domain</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>es.upsa.dasi</groupId>
-            <artifactId>shared-quarkus</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-jsonp</artifactId>
         </dependency>
@@ -60,14 +45,6 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-agroal</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-jdbc-postgresql</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
