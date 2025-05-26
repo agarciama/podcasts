@@ -3,6 +3,7 @@ package es.upsa.dasi.creadores.infrastructure.persistence;
 import es.upsa.dasi.creadores.adapters.output.persistence.Dao;
 import es.upsa.dasi.creadores.domain.exceptions.CreadorHasPodcastException;
 import es.upsa.dasi.podcasts.domain.entities.Creador;
+import es.upsa.dasi.podcasts.domain.exceptions.CreadorNotFoundException;
 import es.upsa.dasi.podcasts.domain.exceptions.FieldRequiredSQLException;
 import es.upsa.dasi.podcasts.domain.exceptions.PodcastsAppException;
 import es.upsa.dasi.podcasts.domain.exceptions.SQLPodcastsNotControlledException;
@@ -71,6 +72,8 @@ public class DaoImpl implements Dao
                 {
                     creadores.add( toCreador(resultSet) );
                 }
+
+                if (creadores.isEmpty()) throw new CreadorNotFoundException();
             }
 
         } catch (SQLException sqlException)

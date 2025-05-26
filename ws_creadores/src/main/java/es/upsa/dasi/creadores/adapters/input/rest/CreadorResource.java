@@ -29,12 +29,12 @@ public class CreadorResource
 
         List<Creador> creadores = ( ids.isEmpty() )? getCreadoresUseCase.execute() : getCreadoresByIdsUseCase.execute(ids);
 
-
-
         return Response.ok()
                 .entity( new GenericEntity<List<Creador>>( creadores ) {})
                 .build();
     }
+
+
 
 
 
