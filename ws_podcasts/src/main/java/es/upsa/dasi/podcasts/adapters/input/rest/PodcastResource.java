@@ -1,11 +1,10 @@
 package es.upsa.dasi.podcasts.adapters.input.rest;
 
+import es.upsa.dasi.podcasts.application.GetPodcastsByCreadorId;
 import es.upsa.dasi.podcasts.application.GetPodcastsByIdUseCase;
 import es.upsa.dasi.podcasts.application.GetPodcastsByIdsUseCase;
 import es.upsa.dasi.podcasts.application.GetPodcastsUseCase;
-import es.upsa.dasi.podcasts.domain.entities.Creador;
 import es.upsa.dasi.podcasts.domain.entities.Podcast;
-import es.upsa.dasi.podcasts.domain.exceptions.CreadorNotFoundException;
 import es.upsa.dasi.podcasts.domain.exceptions.PodcastsAppException;
 import es.upsa.dasi.podcasts.domain.exceptions.PodcastsNotFoundException;
 import jakarta.inject.Inject;
@@ -28,6 +27,9 @@ public class PodcastResource
 
     @Inject
     GetPodcastsByIdUseCase getPodcastsByIdUseCase;
+
+    @Inject
+    GetPodcastsByCreadorId getPodcastsByCreadorId;
 
 
     @GET
@@ -57,5 +59,21 @@ public class PodcastResource
 
 
     }
+
+    @Path("creador/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPodcastsByCreadorId(@PathParam("id") String id) throws PodcastsAppException
+    {
+
+        List<Podcast> podcasts = getPodcastsByCreadorId.execute(id);
+
+        return Response.ok()
+                       .entity(new GenericEntity<List<Podcast>>(podcasts){})
+                       .build();
+
+
+    }
+
 
 }

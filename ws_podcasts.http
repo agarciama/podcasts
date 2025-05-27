@@ -11,3 +11,7 @@ Accept: application/json
 ### GET /podcasts/{id}
 GET http://localhost:8082/podcasts/PC1
 Accept: application/json
+
+### GET /podcasts/creador/{id}
+GET http://localhost:8082/podcasts/creador/CR1
+Accept: application/json

@@ -32,4 +32,9 @@ public class RepositoryImpl implements Repository
     public Optional<Podcast> getPodcastById(String id) throws PodcastsAppException {
         return dao.findPodcastById(id);
     }
+
+    @Override
+    public List<Podcast> getPodcastsByCreadorId(String id) throws PodcastsAppException {
+        return dao.findPodcastsByCreadorId(id);
+    }
 }

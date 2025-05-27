@@ -105,6 +105,39 @@ public class DaoImpl implements Dao
         }
     }
 
+    @Override
+    public List<Podcast> findPodcastsByCreadorId(String ids) throws PodcastsAppException
+    {
+        final String SQL = """
+                           SELECT id, id_creador, titulo, descripcion, fecha_inicio, imagen
+                             FROM podcast
+                            WHERE id_creador = ?
+                           """;
+
+        List<Podcast> podcasts = new ArrayList<>();
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)
+        )
+        {
+            preparedStatement.setString(1, ids);
+            try(ResultSet resultSet = preparedStatement.executeQuery()){
+                while (resultSet.next()){
+                    podcasts.add( toPodcast(resultSet) );
+                }
+                if (podcasts.isEmpty()) throw new NotFoundPodcastWithThatCreadorId();
+            }
+
+
+        } catch (SQLException sqlException)
+        {
+            throw toPodcastsAppException(sqlException);
+        }
+
+        return podcasts;
+
+    }
+
 
     private Podcast toPodcast(ResultSet resultSet) throws SQLException {
         return Podcast.builder()

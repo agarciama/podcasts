@@ -12,4 +12,5 @@ public interface Dao
     List<Podcast> findPodcasts() throws PodcastsAppException;
     List<Podcast> findPodcastsByIds(List<String> ids) throws PodcastsAppException;
     Optional<Podcast> findPodcastById(String id) throws PodcastsAppException;
+    List<Podcast> findPodcastsByCreadorId(String ids) throws PodcastsAppException;
 }
