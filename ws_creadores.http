@@ -22,7 +22,6 @@ Accept: application/json
 }
 
 ### PUT /creadores/{id}
-# Reemplaza CR1 por el ID real que te devolvió tu POST anterior
 PUT http://localhost:8081/creadores/CR5
 Content-Type: application/json
 Accept: application/json
