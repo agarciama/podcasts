@@ -138,14 +138,107 @@ public class DaoImpl implements Dao
 
     }
 
+    @Override
+    public Podcast insertPodcast(Podcast podcast) throws PodcastsAppException {
+        final String SQL = """
+                           INSERT INTO podcast(id,id_creador,titulo,descripcion,fecha_inicio,imagen)
+                             VALUES           ('PC' || nextval('seq_creador'),?,?,?,?,?)
+                           """;
+
+        final String[] fields = {"id"};
+
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL,fields)
+        )
+        {
+            preparedStatement.setString(1, podcast.getIdCreador());
+            preparedStatement.setString(2, podcast.getTitulo());
+            preparedStatement.setString(3, podcast.getDescripcion());
+            preparedStatement.setDate(4, Date.valueOf(podcast.getFechaInicio()));
+            preparedStatement.setString(5, podcast.getImagen());
+            preparedStatement.executeUpdate();
+
+            try(ResultSet resultSet = preparedStatement.getGeneratedKeys())
+            {
+                resultSet.next();
+                String id = resultSet.getString(1);
+                return podcast.withId(id);
+            }
+
+        }catch (SQLException sqlException){
+            throw toPodcastsAppException(sqlException);
+        }
+    }
+
+    @Override
+    public Optional<Podcast> updatePodcast(Podcast podcast) throws PodcastsAppException
+    {
+        final String SQL = """
+                           UPDATE podcast
+                              SET id_creador = ?,
+                                  titulo = ?,
+                                  descripcion = ?,
+                                  fecha_inicio = ?,
+                                  imagen = ?
+                            WHERE id = ?
+                           """;
+
+        try ( Connection connection = dataSource.getConnection();
+              PreparedStatement preparedStatement = connection.prepareStatement(SQL)
+        )
+        {
+            preparedStatement.setString(1, podcast.getIdCreador());
+            preparedStatement.setString(2, podcast.getTitulo());
+            preparedStatement.setString(3, podcast.getDescripcion());
+            preparedStatement.setDate(4, Date.valueOf(podcast.getFechaInicio()));
+            preparedStatement.setString(5, podcast.getImagen());
+            preparedStatement.setString(6, podcast.getId());
+
+            int count = preparedStatement.executeUpdate();
+
+
+            return (count == 0)? Optional.empty() : Optional.of(podcast);
+
+
+        } catch (SQLException sqlException)
+        {
+            throw toPodcastsAppException(sqlException);
+        }
+    }
+
+    @Override
+    public void deletePodcast(String id) throws PodcastsAppException {
+        final String SQL = """
+                           DELETE FROM podcast
+                            WHERE id = ?
+                           """;
+
+        try ( Connection connection = dataSource.getConnection();
+              PreparedStatement preparedStatement = connection.prepareStatement(SQL)
+        )
+        {
+            preparedStatement.setString(1, id);
+
+            int count = preparedStatement.executeUpdate();
+
+            if (count == 0) throw new PodcastsNotFoundException();
+
+
+        } catch (SQLException sqlException)
+        {
+            throw toPodcastsAppException(sqlException);
+
+        }
+    }
+
 
     private Podcast toPodcast(ResultSet resultSet) throws SQLException {
         return Podcast.builder()
                       .withId(resultSet.getString(1))
-                      .withId_creador(resultSet.getString(2))
+                      .withIdCreador(resultSet.getString(2))
                       .withTitulo(resultSet.getString(3))
                       .withDescripcion(resultSet.getString(4))
-                      .withFecha_inicio(resultSet.getDate(5).toLocalDate())
+                      .withFechaInicio(resultSet.getDate(5).toLocalDate())
                       .withImagen(resultSet.getString(6))
                       .build();
     }

@@ -13,4 +13,6 @@ public interface Repository
     List<Podcast> getPodcastsByIds(List<String> ids) throws PodcastsAppException;
     Optional<Podcast> getPodcastById(String id) throws PodcastsAppException;
     List<Podcast> getPodcastsByCreadorId(String id) throws PodcastsAppException;
+    Podcast savePodcast(Podcast podcast) throws PodcastsAppException;
+    void deletePodcast(String id) throws PodcastsAppException;
 }

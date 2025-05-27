@@ -69,9 +69,9 @@ public class CreadorResource
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addPelicula(CreadorDto creadorDto, @Context UriInfo uriInfo) throws PodcastsAppException
+    public Response addCreador(CreadorDto creadorDto, @Context UriInfo uriInfo) throws PodcastsAppException
     {
-        Creador creador = Mappers.toPelicula(creadorDto);
+        Creador creador = Mappers.toCreador(creadorDto);
 
 
         Creador creadorInsertado = addCreadorUseCase.execute(creador);
@@ -88,7 +88,7 @@ public class CreadorResource
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateCreador(@PathParam("id") String id, CreadorDto creadorDto) throws PodcastsAppException
     {
-        Creador creador = Mappers.toPelicula(creadorDto)
+        Creador creador = Mappers.toCreador(creadorDto)
                                  .withId(id);
 
 
@@ -102,7 +102,7 @@ public class CreadorResource
 
     @Path("/{id}")
     @DELETE
-    public Response deletePeliculaById(@PathParam("id") String id) throws PodcastsAppException
+    public Response deleteCreadorById(@PathParam("id") String id) throws PodcastsAppException
     {
         removeCreadorUseCase.execute(id);
 
