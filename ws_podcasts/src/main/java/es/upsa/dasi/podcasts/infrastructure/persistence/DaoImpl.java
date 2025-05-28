@@ -252,7 +252,6 @@ public class DaoImpl implements Dao
         if      ( message.contains("NN_PODCAST.DESCRIPCION")   ) return new FieldRequiredSQLException("descripcion");
         if      ( message.contains("NN_PODCAST.FECHA_INICIO")   ) return new FieldRequiredSQLException("fecha_inicio");
         if      ( message.contains("NN_PODCAST.IMAGEN")   ) return new FieldRequiredSQLException("imagen");
-        if      ( message.contains("FK_EPISODIO_PODCAST")   ) return new PodcastHasEpisodesException();
 
 
         return new SQLPodcastsNotControlledException(sqlException);
