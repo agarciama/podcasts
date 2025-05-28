@@ -1,3 +1,6 @@
+
+//Recursos Creadores
+
 ### GET /creadores
 GET http://localhost:8080/creadores
 Accept: application/json
@@ -34,4 +37,53 @@ Accept: application/json
 
 ### DELETE /creadores/{id}
 DELETE http://localhost:8080/creadores/CR6
+
+
+//Recursos Podcast
+
+### GET /podcasts
+GET http://localhost:8080/podcasts
+Accept: application/json
+
+
+### GET /podcasts?ids
+GET http://localhost:8080/podcasts?ids=PC1,PC2,PC3
+Accept: application/json
+
+### GET /podcasts/{id}
+GET http://localhost:8080/podcasts/PC1
+Accept: application/json
+
+### GET /podcasts/creador/{id}
+GET http://localhost:8080/podcasts/creador/CR1
+Accept: application/json
+
+### POST /podcasts
+POST http://localhost:8080/podcasts
+Content-Type: application/json
+Accept: application/json
+
+{
+  "idCreador": "CR1",
+  "titulo": "Podcast meramente de prueba",
+  "descripcion": "Este podcast se añadirá como una prueba para comprobar la nueva funcionalidad",
+  "fechaInicio": "2025-05-27",
+  "imagen": "No tenemso imagen todavía"
+}
+
+### PUT /creadores/{id}
+PUT http://localhost:8080/podcasts/PC7
+Content-Type: application/json
+Accept: application/json
+
+{
+  "idCreador": "CR2",
+  "titulo": "Podcast meramente de prueba en el que se actualiza el id del creador",
+  "descripcion": "Este podcast se añadirá como una prueba para comprobar la nueva funcionalidad",
+  "fechaInicio": "2025-05-27",
+  "imagen": "No tenemso imagen todavía"
+}
+
+### DELETE /creadores/{id}
+DELETE http://localhost:8080/podcasts/PC7
 
