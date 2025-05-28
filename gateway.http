@@ -10,7 +10,7 @@ GET http://localhost:8080/creadores?ids=CR1,CR2,CR3
 Accept: application/json
 
 ### GET /creadores/{id}
-GET http://localhost:8080/creadores/CR1
+GET http://localhost:8080/creadores/CR9
 Accept: application/json
 
 ### POST /creadores
@@ -36,7 +36,7 @@ Accept: application/json
 }
 
 ### DELETE /creadores/{id}
-DELETE http://localhost:8080/creadores/CR6
+DELETE http://localhost:8080/creadores/CR1
 
 
 //Recursos Podcast
