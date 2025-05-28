@@ -3,6 +3,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="Quarkus" url="file://$PROJECT_DIR$/gateway" />
+    <file type="Quarkus" url="file://$PROJECT_DIR$/shared-quarkus" />
     <file type="Quarkus" url="file://$PROJECT_DIR$/ws_creadores" />
     <file type="Quarkus" url="file://$PROJECT_DIR$/ws_podcasts" />
   </component>
