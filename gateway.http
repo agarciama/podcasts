@@ -2,19 +2,19 @@
 //Recursos Creadores
 
 ### GET /creadores
-GET http://localhost:8080/creadores
+GET http://localhost:8083/creadores
 Accept: application/json
 
 ### GET /creadores?ids
-GET http://localhost:8080/creadores?ids=CR1,CR2,CR3
+GET http://localhost:8083/creadores?ids=CR1,CR2,CR3
 Accept: application/json
 
 ### GET /creadores/{id}
-GET http://localhost:8080/creadores/CR9
+GET http://localhost:8083/creadores/CR9
 Accept: application/json
 
 ### POST /creadores
-POST http://localhost:8080/creadores
+POST http://localhost:8083/creadores
 Content-Type: application/json
 Accept: application/json
 
@@ -25,7 +25,7 @@ Accept: application/json
 }
 
 ### PUT /creadores/{id}
-PUT http://localhost:8080/creadores/CR6
+PUT http://localhost:8083/creadores/CR6
 Content-Type: application/json
 Accept: application/json
 
@@ -36,30 +36,30 @@ Accept: application/json
 }
 
 ### DELETE /creadores/{id}
-DELETE http://localhost:8080/creadores/CR1
+DELETE http://localhost:8083/creadores/CR1
 
 
 //Recursos Podcast
 
 ### GET /podcasts
-GET http://localhost:8080/podcasts
+GET http://localhost:8083/podcasts
 Accept: application/json
 
 
 ### GET /podcasts?ids
-GET http://localhost:8080/podcasts?ids=PC1,PC2,PC3
+GET http://localhost:8083/podcasts?ids=PC1,PC2,PC3
 Accept: application/json
 
 ### GET /podcasts/{id}
-GET http://localhost:8080/podcasts/PC1
+GET http://localhost:8083/podcasts/PC1
 Accept: application/json
 
 ### GET /podcasts/creador/{id}
-GET http://localhost:8080/podcasts/creador/CR1
+GET http://localhost:8083/podcasts/creador/CR1
 Accept: application/json
 
 ### POST /podcasts
-POST http://localhost:8080/podcasts
+POST http://localhost:8083/podcasts
 Content-Type: application/json
 Accept: application/json
 
@@ -72,7 +72,7 @@ Accept: application/json
 }
 
 ### PUT /creadores/{id}
-PUT http://localhost:8080/podcasts/PC7
+PUT http://localhost:8083/podcasts/PC7
 Content-Type: application/json
 Accept: application/json
 
@@ -85,5 +85,5 @@ Accept: application/json
 }
 
 ### DELETE /creadores/{id}
-DELETE http://localhost:8080/podcasts/PC7
+DELETE http://localhost:8083/podcasts/PC7
 

@@ -21,6 +21,7 @@
         <module>gateway</module>
         <module>domain</module>
         <module>shared-quarkus</module>
+        <module>web</module>
     </modules>
 
 </project>
