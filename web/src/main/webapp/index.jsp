@@ -26,6 +26,12 @@
       color: #444;
       margin-bottom: 20px;
     }
+    h2 {
+      margin-top: 30px;
+      color: #555;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
     nav ul {
       list-style: none;
       padding: 0;
@@ -37,7 +43,7 @@
       text-decoration: none;
       color: #2196F3;
       font-weight: bold;
-      font-size: 1.1em;
+      font-size: 1.05em;
     }
     nav a:hover {
       text-decoration: underline;
@@ -48,12 +54,22 @@
 <div class="container">
   <h1>Álvaro García Martín</h1>
   <nav>
+    <h2>Creadores</h2>
     <ul>
       <li><a href="http://localhost:8080/web-1.0.0/web/creadores">Listar todos los creadores</a></li>
       <li><a href="http://localhost:8080/web-1.0.0/web/form/creadores/insert">Formulario: Nuevo creador</a></li>
       <li><a href="http://localhost:8080/web-1.0.0/web/creadores/CR1">Ver creador (ejemplo CR1)</a></li>
       <li><a href="http://localhost:8080/web-1.0.0/web/form/creadores/update/CR1">Editar creador (ejemplo CR1)</a></li>
       <li><a href="http://localhost:8080/web-1.0.0/web/form/creadores/delete/CR1">Eliminar creador (ejemplo CR1)</a></li>
+    </ul>
+
+    <h2>Podcasts</h2>
+    <ul>
+      <li><a href="http://localhost:8080/web-1.0.0/web/podcasts">Listar todos los podcasts</a></li>
+      <li><a href="http://localhost:8080/web-1.0.0/web/form/podcasts/insert">Formulario: Nuevo podcast</a></li>
+      <li><a href="http://localhost:8080/web-1.0.0/web/podcasts/PC1">Ver podcast (ejemplo PC1)</a></li>
+      <li><a href="http://localhost:8080/web-1.0.0/web/form/podcasts/update/PC1">Editar podcast (ejemplo PC1)</a></li>
+      <li><a href="http://localhost:8080/web-1.0.0/web/form/podcasts/delete/PC1">Eliminar podcast (ejemplo PC1)</a></li>
     </ul>
   </nav>
 </div>
