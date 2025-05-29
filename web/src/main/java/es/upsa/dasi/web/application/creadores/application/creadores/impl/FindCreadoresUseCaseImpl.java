@@ -1,9 +1,8 @@
-package es.upsa.dasi.web.application.impl;
+package es.upsa.dasi.web.application.creadores.application.creadores;
 
 import es.upsa.dasi.podcasts.domain.entities.Creador;
-import es.upsa.dasi.podcasts.domain.exceptions.PodcastsAppException;
-import es.upsa.dasi.web.application.FindCreadoresUseCase;
-import es.upsa.dasi.web.infrastructure.rest.GatewayRestClient;
+import es.upsa.dasi.web.application.creadores.application.creadores.impl.FindCreadoresUseCase;
+import es.upsa.dasi.web.infrastructure.rest.CreadoresGatewayRestClient;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
@@ -16,10 +15,10 @@ public class FindCreadoresUseCaseImpl implements FindCreadoresUseCase
 
     @Inject
     @RestClient
-    GatewayRestClient restClient;
+    CreadoresGatewayRestClient restClient;
 
     @Override
-    public List<Creador> execute() throws PodcastsAppException
+    public List<Creador> execute()
     {
         return restClient.findCreadores();
     }
