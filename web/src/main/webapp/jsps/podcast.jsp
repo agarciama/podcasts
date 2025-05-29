@@ -5,6 +5,92 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Podcast</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+        .form-container {
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        form {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-row-gap: 15px;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="email"], textarea, input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        .readonly {
+            background-color: #e9e9e9;
+        }
+        .actions {
+            text-align: right;
+            margin-top: 20px;
+        }
+        .actions input[type="submit"] {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .actions input[type="submit"]:hover {
+            background-color: #45A049;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .form-header h1 {
+            font-size: 2em;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .form-header p {
+            font-size: 1.1em;
+            color: #666;
+            margin: 8px 0 0;
+        }
+        .delete-submit {
+            background-color: #f44336 !important;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .delete-submit:hover {
+            background-color: #d32f2f !important;
+        }
+    </style>
 </head>
 <body>
 <c:choose>
@@ -37,94 +123,71 @@
         <c:set var="submitLabel" value=""/>
     </c:otherwise>
 </c:choose>
+
 <div class="form-header">
     <c:choose>
         <c:when test="${action == 'VIEW'}">
-            <h1>¡Creador encontrado!</h1>
+            <h1>¡Podcast encontrado!</h1>
         </c:when>
         <c:when test="${action == 'UPDATE'}">
-            <h1>Creador encontrado</h1>
+            <h1>Editar Podcast</h1>
             <p>Introduzca los datos a editar.</p>
         </c:when>
         <c:when test="${action == 'INSERT'}">
-            <h1>Nuevo creador</h1>
-            <p>Introduzca los datos para insertar un creador.</p>
+            <h1>Nuevo Podcast</h1>
+            <p>Introduzca los datos para insertar un podcast.</p>
         </c:when>
         <c:when test="${action == 'DELETE'}">
-            <h1>Eliminar creador</h1>
-            <p>Confirme que desea eliminar este creador.</p>
+            <h1>Eliminar Podcast</h1>
+            <p>Confirme que desea eliminar este podcast.</p>
         </c:when>
         <c:otherwise>
-            <h1>Formulario de creador</h1>
+            <h1>Formulario de Podcast</h1>
         </c:otherwise>
     </c:choose>
 </div>
-<h1>Editar Podcast ${podcast.id}</h1>
+
 <div class="form-container">
-    <form method="POST"
-          action="${urlForm}"
-          enctype="application/x-www-form-urlencoded">
+    <form method="POST" action="${urlForm}" enctype="application/x-www-form-urlencoded">
         <input type="hidden" name="_method" value="${method}"/>
 
         <c:if test="${action != 'INSERT'}">
             <div>
                 <label for="id">ID:</label>
-                <input type="text"
-                       id="id"
-                       name="id"
-                       value="${podcast.id}"
-                       readonly/>
+                <input type="text" id="id" name="id" value="${podcast.id}" readonly class="readonly"/>
             </div>
         </c:if>
 
         <div>
             <label for="titulo">Título:</label>
-            <input type="text"
-                   id="titulo"
-                   name="titulo"
-                   value="${podcast.titulo}"
-            ${readonly}
-            />
+            <input type="text" id="titulo" name="titulo" value="${podcast.titulo}" ${readonly}/>
         </div>
 
         <div>
             <label for="idCreador">ID Creador:</label>
-            <input type="text"
-                   id="idCreador"
-                   name="idCreador"
-                   value="${podcast.idCreador}"
-            ${readonly}
-            />
+            <input type="text" id="idCreador" name="idCreador" value="${podcast.idCreador}" ${readonly}/>
         </div>
 
         <div>
             <label for="descripcion">Descripción:</label><br/>
-            <textarea id="descripcion"
-                      name="descripcion"
-                      rows="4"
-                      cols="50"
-            ${readonly}
-            >${podcast.descripcion}</textarea>
+            <textarea id="descripcion" name="descripcion" ${readonly}>${podcast.descripcion}</textarea>
         </div>
 
         <div>
             <label for="fechaInicio">Fecha inicio:</label>
-            <input type="date"
-                   id="fechaInicio"
-                   name="fechaInicio"
-                   value="${podcast.fechaInicio}" ${readonly}/>
+            <input type="date" id="fechaInicio" name="fechaInicio" value="${podcast.fechaInicio}" ${readonly}/>
         </div>
 
         <div>
             <label for="imagen">URL imagen:</label>
-            <input type="text"
-                   id="imagen"
-                   name="imagen"
-                   value="${podcast.imagen}" ${readonly}/>
+            <input type="text" id="imagen" name="imagen" value="${podcast.imagen}" ${readonly}/>
         </div>
 
         <c:if test="${action != 'VIEW'}">
-            <input type="submit" value="${submitLabel}"/>
+            <div class="actions">
+                <input type="submit" value="${submitLabel}"
+                       class="${action == 'DELETE' ? 'delete-submit' : ''}"/>
+            </div>
         </c:if>
     </form>
 </div>
