@@ -1,4 +1,4 @@
-package es.upsa.dasi.web.application.creadores.application.creadores;
+package es.upsa.dasi.web.application.creadores;
 
 public interface DeleteCreadorByIdUseCase
 {

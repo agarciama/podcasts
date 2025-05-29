@@ -1,4 +1,4 @@
-package es.upsa.dasi.web.application.creadores.application.creadores;
+package es.upsa.dasi.web.application.creadores;
 
 import es.upsa.dasi.podcasts.domain.dtos.CreadorDto;
 import es.upsa.dasi.podcasts.domain.entities.Creador;

@@ -6,7 +6,7 @@ import es.upsa.dasi.podcasts.domain.entities.Creador;
 import es.upsa.dasi.web.adapters.input.rest.dtos.Actions;
 import es.upsa.dasi.web.adapters.input.rest.dtos.CreadorForm;
 import es.upsa.dasi.web.adapters.input.rest.mappers.Mappers;
-import es.upsa.dasi.web.application.creadores.application.creadores.*;
+import es.upsa.dasi.web.application.creadores.*;
 import es.upsa.dasi.web.domain.exceptions.CreadorNotFoundRuntimeException;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -122,11 +122,5 @@ public class CreadorController
             return Response.ok("/jsps/error").build();
         }
     }
-
-
-
-
-
-
 
 }

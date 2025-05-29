@@ -1,6 +1,6 @@
-package es.upsa.dasi.web.application.creadores.application.creadores.impl;
+package es.upsa.dasi.web.application.creadores.impl;
 
-import es.upsa.dasi.web.application.creadores.application.creadores.DeleteCreadorByIdUseCase;
+import es.upsa.dasi.web.application.creadores.DeleteCreadorByIdUseCase;
 import es.upsa.dasi.web.infrastructure.rest.CreadoresGatewayRestClient;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;

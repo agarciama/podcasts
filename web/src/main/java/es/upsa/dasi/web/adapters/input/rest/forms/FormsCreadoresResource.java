@@ -2,7 +2,7 @@ package es.upsa.dasi.web.adapters.input.rest.forms;
 
 import es.upsa.dasi.podcasts.domain.entities.Creador;
 import es.upsa.dasi.web.adapters.input.rest.dtos.Actions;
-import es.upsa.dasi.web.application.creadores.application.creadores.FindCreadorByIdUseCase;
+import es.upsa.dasi.web.application.creadores.FindCreadorByIdUseCase;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.mvc.Controller;
