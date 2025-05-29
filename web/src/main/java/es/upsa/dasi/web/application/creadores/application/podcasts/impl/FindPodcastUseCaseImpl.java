@@ -1,4 +1,7 @@
 package es.upsa.dasi.web.application.creadores.application.podcasts.impl;
 
-public class FindPodcastUseCaseImpl {
+import es.upsa.dasi.web.application.creadores.application.podcasts.FindPodcastUseCase;
+
+public class FindPodcastUseCaseImpl implements FindPodcastUseCase
+{
 }

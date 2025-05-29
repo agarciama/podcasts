@@ -1,4 +1,6 @@
 package es.upsa.dasi.web.adapters.input.rest.dtos;
 
-public enum Actions {
+public enum Actions
+{
+    VIEW, INSERT, UPDATE, DELETE
 }

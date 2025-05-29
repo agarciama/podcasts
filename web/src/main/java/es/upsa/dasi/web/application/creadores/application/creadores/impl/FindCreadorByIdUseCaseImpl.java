@@ -1,7 +1,7 @@
-package es.upsa.dasi.web.application.creadores.application.creadores;
+package es.upsa.dasi.web.application.creadores.application.creadores.impl;
 
 import es.upsa.dasi.podcasts.domain.entities.Creador;
-import es.upsa.dasi.web.application.creadores.application.creadores.impl.FindCreadorByIdUseCase;
+import es.upsa.dasi.web.application.creadores.application.creadores.FindCreadorByIdUseCase;
 import es.upsa.dasi.web.domain.exceptions.CreadorNotFoundRuntimeException;
 import es.upsa.dasi.web.infrastructure.rest.CreadoresGatewayRestClient;
 import jakarta.enterprise.context.ApplicationScoped;

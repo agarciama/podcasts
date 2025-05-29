@@ -1,31 +1,45 @@
 package es.upsa.dasi.web.infrastructure.rest;
 
 
+import es.upsa.dasi.podcasts.domain.dtos.CreadorDto;
 import es.upsa.dasi.podcasts.domain.entities.Creador;
-import es.upsa.dasi.podcasts.domain.exceptions.PodcastsAppException;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
+import es.upsa.dasi.web.infrastructure.rest.providers.CreadoresResponseExceptionMapper;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.rest.client.annotation.RegisterProvider;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import java.util.List;
-import java.util.Optional;
 
 @RegisterRestClient(baseUri = "http://localhost:8083")
-@RegisterProvider()
-public interface GatewayRestClient
+@RegisterProvider(CreadoresResponseExceptionMapper.class)
+public interface CreadoresGatewayRestClient
 {
     @GET
     @Path("/creadores")
     @Produces(MediaType.APPLICATION_JSON)
-    List<Creador> findCreadores() throws PodcastsAppException;
+    List<Creador> findCreadores();
 
     @GET
     @Path("/creadores/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    Optional<Creador> findCreadoresById(@PathParam("id") String id) throws PodcastsAppException;
+    Creador findCreadoresById(@PathParam("id") String id);
+
+    @PUT
+    @Path("/creadores/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    Creador updateCreadoresById(@PathParam("id") String id, CreadorDto creadorDto);
+
+    @POST @Path("/creadores")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    Creador createCreador(CreadorDto creadorDto);
+
+    @DELETE
+    @Path("/creadores/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    Response deleteCreadorById(@PathParam("id") String id);
 
 }
