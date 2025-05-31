@@ -25,3 +25,5 @@ public class PodcastsApplicationExceptionMapper implements ExceptionMapper<Podca
                 .build();
     }
 }
+
+

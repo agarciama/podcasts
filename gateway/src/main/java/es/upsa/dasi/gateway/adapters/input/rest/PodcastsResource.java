@@ -21,7 +21,7 @@ public class PodcastsResource
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findPeliculas(@QueryParam("ids") @DefaultValue("") String ids)
+    public Response getPodcasts(@QueryParam("ids") @DefaultValue("") String ids)
     {
         return (ids.isEmpty())? restClientPodcasts.findAll(): restClientPodcasts.findAll(ids);
     }
@@ -29,7 +29,7 @@ public class PodcastsResource
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response findPeliculaById (@PathParam ("id") String id)
+    public Response getPodcastsById (@PathParam ("id") String id)
     {
         return restClientPodcasts.findById(id);
     }
@@ -37,7 +37,7 @@ public class PodcastsResource
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response create (PodcastDto podcastDto, @Context UriInfo uriInfo)
+    public Response addPodcast (PodcastDto podcastDto, @Context UriInfo uriInfo)
     {
         URI baseUri = uriInfo.getBaseUri();
         String protocol = baseUri.getScheme();
@@ -51,14 +51,14 @@ public class PodcastsResource
     @PUT
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updatePelicula(@PathParam("id") String id, PodcastDto podcastDto){
+    public Response updatePodcast(@PathParam("id") String id, PodcastDto podcastDto){
         return restClientPodcasts.update(id, podcastDto);
     }
 
 
     @DELETE
     @Path("/{id}")
-    public Response delete(@PathParam("id") String id){
+    public Response deletePodcast(@PathParam("id") String id){
         return restClientPodcasts.delete(id);
     }
 

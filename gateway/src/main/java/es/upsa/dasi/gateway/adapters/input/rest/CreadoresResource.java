@@ -21,7 +21,7 @@ public class CreadoresResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findPeliculas(@QueryParam("ids") @DefaultValue("") String ids)
+    public Response getCreador(@QueryParam("ids") @DefaultValue("") String ids)
     {
         return (ids.isEmpty())? restClientCreadores.findAll(): restClientCreadores.findAll(ids);
     }
@@ -29,7 +29,7 @@ public class CreadoresResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response findPeliculaById (@PathParam ("id") String id)
+    public Response getCreadorById (@PathParam ("id") String id)
     {
         return restClientCreadores.findById(id);
     }
@@ -37,7 +37,7 @@ public class CreadoresResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response create (CreadorDto creadorDto, @Context UriInfo uriInfo)
+    public Response addCreador (CreadorDto creadorDto, @Context UriInfo uriInfo)
     {
         URI baseUri = uriInfo.getBaseUri();
         String protocol = baseUri.getScheme();
@@ -50,14 +50,14 @@ public class CreadoresResource {
     @PUT
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updatePelicula(@PathParam("id") String id, CreadorDto creadorDto){
+    public Response updateCreador(@PathParam("id") String id, CreadorDto creadorDto){
         return restClientCreadores.update(id, creadorDto);
     }
 
 
     @DELETE
     @Path("/{id}")
-    public Response delete(@PathParam("id") String id){
+    public Response deleteCreadorById(@PathParam("id") String id){
         return restClientCreadores.delete(id);
     }
 

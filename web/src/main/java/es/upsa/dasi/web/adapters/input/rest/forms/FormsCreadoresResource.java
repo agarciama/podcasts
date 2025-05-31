@@ -26,6 +26,16 @@ public class FormsCreadoresResource
     Models models;
 
     @GET
+    @Path("/insert")
+    @Controller
+    @UriRef("formInsertCreador")
+    public Response formInsertCreador() {
+        models.put("creador", new Creador());
+        models.put("action", Actions.INSERT);
+        return Response.ok("/jsps/creador.jsp").build();
+    }
+
+    @GET
     @Path("/update/{id}")
     @Controller
     @UriRef("formUpdateCreadorByid")
@@ -34,23 +44,8 @@ public class FormsCreadoresResource
         Optional<Creador> optionalCreador = findCreadorByIdUseCase.execute(id);
         if (optionalCreador.isEmpty()) return Response.ok("/jsps/creadorNotFound.jsp").build();
 
-
         models.put("creador", optionalCreador.get());
         models.put("action", Actions.UPDATE);
-        return Response.ok("/jsps/creador.jsp").build();
-
-
-
-    }
-
-    @GET
-    @Path("/insert")
-    @Controller
-    @UriRef("formInsertCreador")
-    public Response formInsertCreador() {
-
-        models.put("creador", new Creador());
-        models.put("action", Actions.INSERT);
         return Response.ok("/jsps/creador.jsp").build();
     }
 
@@ -67,7 +62,4 @@ public class FormsCreadoresResource
         models.put("action", Actions.DELETE);
         return Response.ok("/jsps/creador.jsp").build();
     }
-
-
-
 }
