@@ -130,7 +130,7 @@
             <h1>¡Creador encontrado!</h1>
         </c:when>
         <c:when test="${action == 'UPDATE'}">
-            <h1>Creador encontrado</h1>
+                <h1>Editar Creador</h1>
             <p>Introduzca los datos a editar.</p>
         </c:when>
         <c:when test="${action == 'INSERT'}">
